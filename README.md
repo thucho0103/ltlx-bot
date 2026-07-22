@@ -1,89 +1,87 @@
-# 🚗 Bot Discord Ôn Thi Lý Thuyết Lái Xe Ô Tô (GPLX)
+# 🚗 Bot Discord Ôn Thi Lý Thuyết Lái Xe Ô Tô Hạng B2 (Trọn Bộ 600 Câu Hỏi GTVT)
 
-Chào mừng bạn đến với dự án Bot Discord giúp ôn tập và thi thử lý thuyết lái xe ô tô (hạng B1/B2) và xe máy (hạng A1) theo **bộ 600 câu hỏi mới nhất của Bộ Giao thông Vận tải & Bộ Công an**.
+Chương trình Bot Discord hỗ trợ học tập, ôn luyện và thi thử lý thuyết lái xe ô tô hạng B2 theo **bộ 600 câu hỏi sát hạch mới nhất của Bộ GTVT & Cục Đường bộ Việt Nam**.
 
-Bot hỗ trợ đầy đủ các tính năng tương tác trực quan bằng các nút bấm (Buttons) và giao diện thẻ nhúng (Embeds) vô cùng đẹp mắt, mô phỏng chân thực bài thi sát hạch lý thuyết.
+Bot hỗ trợ đầy đủ các tính năng tương tác trực quan bằng các nút bấm (Buttons), thẻ nhúng (Embeds) đẹp mắt, đếm ngược thời gian thi thực tế và liên kết tới file PDF nguồn đối chiếu.
+
+---
+
+## ⚡ Quick Setup Tự Động (macOS / Linux / Termux Android)
+
+Chỉ cần chạy **1 dòng lệnh duy nhất** bên dưới để tự động kiểm tra môi trường, cài đặt thư viện, cấu hình file `.env`, đăng ký lệnh và khởi chạy bot:
+
+```bash
+# Clone repository và chạy script cài đặt tự động Quick Setup
+git clone https://github.com/thucho0103/ltlx-bot.git
+cd ltlx-bot
+chmod +x setup.sh
+./setup.sh
+```
+
+> **Hỗ trợ đầy đủ**:
+> - **macOS** (zsh / bash)
+> - **Linux** (Ubuntu / Debian / Arch / Alpine)
+> - **Termux Android** (Tự động tải `nodejs-lts` & `git` qua `pkg`)
 
 ---
 
 ## ✨ Các Tính Năng Nổi Bật
 
-1.  **📖 Chế độ ôn tập (`/on-tap`):**
-    *   Học viên có thể ôn tập theo từng chủ đề: *Luật giao thông*, *Biển báo*, *Giải thế sa hình*, hoặc *Câu hỏi điểm liệt*.
-    *   Sau mỗi câu trả lời, bot sẽ lập tức phản hồi kết quả Đúng/Sai, hiển thị đáp án chuẩn kèm **giải thích chi tiết lý thuyết**.
-    *   Tương tác mượt mà bằng nút bấm "Câu tiếp theo" để tự động tải câu hỏi mới.
+1. **📖 Ôn tập theo 7 chủ đề chuẩn (`/on-tap`):**
+   - **Luật giao thông đường bộ** (166 câu)
+   - **Nghiệp vụ vận tải** (26 câu)
+   - **Văn hóa & Đạo đức người lái xe** (21 câu)
+   - **Kỹ thuật lái xe ô tô** (56 câu)
+   - **Cấu tạo & Sửa chữa ô tô** (35 câu)
+   - **Hệ thống biển báo đường bộ** (182 câu)
+   - **Giải thế sa hình** (114 câu)
+   - **60 câu hỏi điểm liệt** (Bị trượt ngay nếu chọn sai)
+   - Phản hồi đáp án tức thì, kèm lời giải thích lý thuyết chi tiết & **Nút mở File PDF nguồn đối chiếu**.
 
-2.  **⏱️ Phòng thi thử sát hạch (`/thi-thu`):**
-    *   **Hạng B1 / B2:** Cấu trúc 35 câu làm trong 22 phút. Yêu cầu đúng >= 32 câu và không sai câu điểm liệt.
-    *   **Hạng A1:** Cấu trúc 25 câu làm trong 19 phút. Yêu cầu đúng >= 21 câu và không sai câu điểm liệt.
-    *   **Đồng hồ đếm ngược:** Đếm ngược thời gian làm bài chính xác, tự động nộp bài và khóa tương tác khi hết giờ.
-    *   **Chấm điểm tự động:** Đưa ra kết quả **THI ĐẠT** hoặc **THI TRƯỢT**, cảnh báo đặc biệt nếu trượt do câu điểm liệt.
-    *   **Xem lại bài thi:** Hiển thị danh sách các câu trả lời sai kèm đáp án đúng để học viên ôn tập lại.
+2. **⏱️ Thi thử sát hạch Hạng B2 (`/thi-thu`):**
+   - Đề thi chuẩn 35 câu ngẫu nhiên làm trong **22 phút**.
+   - Tự động lồng ghép **4 câu điểm liệt** theo tiêu chuẩn Bộ GTVT.
+   - Đồng hồ đếm ngược thời gian làm bài, tự động nộp khi hết giờ.
+   - Đánh giá **THI ĐẠT** (>= 32/35 câu & không sai câu điểm liệt) hoặc **THI TRƯỢT**.
+   - Xem lại chi tiết các câu đã chọn sai để rút kinh nghiệm.
 
-3.  **📈 Bảng thống kê học tập (`/thong-ke`):**
-    *   Ghi nhớ tiến độ học: Tổng số câu đã trả lời, tỉ lệ trả lời đúng.
-    *   Thống kê lịch sử thi thử: Số đề đã thi, tỉ lệ đỗ/trượt cụ thể của từng học viên.
+3. **📊 Bảng thống kê cá nhân (`/thong-ke`):**
+   - Theo dõi số câu đã làm, tỉ lệ trả lời đúng và lịch sử số đề thi đã ĐẠT/TRƯỢT.
 
-4.  **💡 Sổ tay hướng dẫn & Mẹo nhanh (`/help`):**
-    *   Tổng hợp các mẹo nhận diện đáp án nhanh (ví dụ: các từ khóa "bị nghiêm cấm", "không được phép"...).
-    *   Hướng dẫn quy chế thi thực tế.
+4. **📄 Nguồn dữ liệu & Minh bạch ([DATA_SOURCES.md](DATA_SOURCES.md)):**
+   - Liên kết trực tiếp tới file PDF quét gốc của Thư viện Pháp luật / Cục Đường bộ Việt Nam.
 
 ---
 
-## 🛠️ Hướng Dẫn Cài Đặt Chi Tiết
+## 🛠️ Cài Đặt Thủ Công (Manual Setup)
 
-### 1. Tạo ứng dụng Bot trên Discord Developer Portal
+Nếu không sử dụng script tự động `./setup.sh`, bạn có thể thực hiện theo các bước thủ công sau:
+
+### 1. Tạo Bot trên Discord Developer Portal
 1. Truy cập [Discord Developer Portal](https://discord.com/developers/applications).
-2. Nhấn nút **New Application** ở góc trên cùng bên phải và đặt tên cho Bot (ví dụ: `Bot On Thi GPLX`).
-3. Đi tới mục **Bot** ở menu bên trái:
-   * Nhấn **Add Bot**.
-   * Nhấn **Reset Token** để lấy Token của bot. Hãy sao chép Token này lại.
-   * Cuộn xuống mục **Privileged Gateway Intents** và kích hoạt các quyền sau (bắt buộc):
-     * `Presence Intent`
-     * `Server Members Intent`
-     * `Message Content Intent`
-4. Đi tới mục **OAuth2** -> **General** ở menu bên trái:
-   * Sao chép **Client ID** của bot.
+2. Nhấn **New Application** và đặt tên cho Bot.
+3. Vào mục **Bot** -> sao chép **Bot Token**.
+4. Vào mục **OAuth2** -> sao chép **Client ID**.
 
-### 2. Thiết lập môi trường dự án
-1. Sao chép file `.env.example` thành file `.env`:
-   ```bash
-   cp .env.example .env
-   ```
-2. Mở file `.env` bằng trình chỉnh sửa và điền thông tin của bạn vào:
-   ```env
-   DISCORD_TOKEN=Token_của_bot_bạn_vừa_copy_ở_bước_trên
-   CLIENT_ID=Client_ID_của_bot_bạn_vừa_copy_ở_bước_trên
-   GUILD_ID=ID_của_server_discord_dành_cho_thử_nghiệm_(tùy_chọn)
-   ```
-   *(Lưu ý: Nếu điền `GUILD_ID`, các lệnh Slash Command sẽ xuất hiện ngay lập tức trên Server đó sau khi đăng ký. Nếu để trống, lệnh sẽ đăng ký toàn cầu và có thể mất tới 1 giờ để hiển thị trên tất cả server).*
+### 2. Thiết lập Môi trường & Chạy Bot
+```bash
+# 1. Tạo file .env từ .env.example
+cp .env.example .env
 
-### 3. Cài đặt các gói phụ thuộc và chạy bot
-1. Cài đặt thư viện Node.js cần thiết:
-   ```bash
-   npm install
-   ```
-2. Đăng ký các lệnh Slash Command với Discord (chỉ cần chạy một lần đầu tiên hoặc khi bạn thay đổi cấu trúc lệnh):
-   ```bash
-   npm run register
-   ```
-3. Khởi động bot:
-   ```bash
-   npm start
-   ```
-   *(Khi màn hình hiển thị `✅ Bot Discord LTLX đã sẵn sàng!` là bot đã hoạt động thành công).*
+# 2. Cấu hình file .env
+# DISCORD_TOKEN=Token_của_bạn
+# CLIENT_ID=Client_ID_của_bạn
+# LIVE_CHANNEL_ID=ID_kênh_cho_phép_bot_hoạt_động (Tùy chọn)
 
-### 4. Mời Bot vào máy chủ (Server) Discord của bạn
-1. Quay lại Discord Developer Portal, đi tới mục **OAuth2** -> **URL Generator** của ứng dụng bot của bạn.
-2. Trong phần **Scopes**, tích chọn: `bot` và `applications.commands`.
-3. Trong phần **Bot Permissions**, tích chọn các quyền:
-   * `Send Messages`
-   * `Embed Links`
-   * `Use External Emojis`
-   * `Add Reactions`
-   * `Read Message History`
-4. Cuộn xuống cuối trang và sao chép đường link được tạo ra tại **Generated URL**.
-5. Dán đường link đó vào trình duyệt, chọn server Discord của bạn và cấp quyền để mời bot vào.
+# 3. Cài đặt thư viện
+npm install
+
+# 4. Đăng ký các lệnh Slash Commands
+npm run register
+
+# 5. Khởi động bot
+npm start
+```
 
 ---
 
@@ -92,24 +90,22 @@ Bot hỗ trợ đầy đủ các tính năng tương tác trực quan bằng cá
 ```text
 ltlx_bot/
 ├── data/
-│   ├── questions.json     # Cơ sở dữ liệu chứa câu hỏi, biển báo, sa hình (JSON)
-│   └── stats.json         # File lưu trữ tự động tiến độ & thống kê của người dùng
+│   ├── questions.json     # Cơ sở dữ liệu 600 câu hỏi sát hạch B2 (JSON)
+│   ├── parse_questions.py # Script xử lý OCR & trích xuất dữ liệu tự động
+│   └── stats.json         # File lưu trữ tiến độ học tập của từng người dùng
 ├── utils/
 │   └── statsManager.js    # Tiện ích quản lý đọc/ghi thống kê học tập
+├── setup.sh               # Script Quick Setup tự động (macOS/Linux/Termux)
+├── DATA_SOURCES.md        # Tài liệu minh bạch nguồn gốc PDF & phương pháp OCR
 ├── .env.example           # File cấu hình mẫu môi trường
-├── index.js               # Điểm khởi chạy bot chính & xử lý sự kiện
-├── package.json           # Danh sách thư viện và scripts chạy dự án
-├── register-commands.js   # Script dùng để đăng ký các lệnh Slash với Discord API
+├── index.js               # Điểm khởi chạy bot chính & xử lý tương tác
+├── register-commands.js   # Script đăng ký các lệnh Slash với Discord API
 └── README.md              # Tài liệu hướng dẫn sử dụng bot
 ```
 
 ---
 
-## ⚡ Các Lệnh Sử Dụng Trực Tiếp Trên Discord
+## 📄 Giấy Phép & Nguồn Gốc
 
-Gõ các lệnh sau trong khung chat của Discord (nhớ bật tính năng lệnh Slash):
-
-*   `/help` - Hiển thị hướng dẫn và các mẹo học lý thuyết lái xe hữu ích.
-*   `/on-tap` - Lựa chọn chủ đề ôn thi (Luật giao thông, Biển báo, Sa hình, Điểm liệt, Ngẫu nhiên).
-*   `/thi-thu` - Lựa chọn hạng bằng (A1 hoặc B1/B2) để bắt đầu thi thử tính giờ.
-*   `/thong-ke` - Xem bảng điểm tích lũy và hiệu suất ôn luyện cá nhân của bạn.
+- Dữ liệu câu hỏi thuộc bản quyền của **Cục Đường bộ Việt Nam - Bộ Giao thông Vận tải**.
+- File PDF gốc: [On-thi-gplx-hang-b2-2023.pdf](https://cdn.thuvienphapluat.vn/uploads/OnThiGiayPhepLaiXe/On-thi-gplx-hang-b2-2023.pdf).
