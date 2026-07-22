@@ -8,20 +8,21 @@ Bot hỗ trợ đầy đủ các tính năng tương tác trực quan bằng cá
 
 ## ⚡ Quick Setup Tự Động (macOS / Linux / Termux Android)
 
-Chỉ cần chạy **1 dòng lệnh duy nhất** bên dưới để tự động kiểm tra môi trường, cài đặt thư viện, cấu hình file `.env`, đăng ký lệnh và khởi chạy bot:
+Chỉ cần sao chép **1 dòng lệnh duy nhất** bên dưới dán vào màn hình Terminal (hoặc Termux trên Android) để cài đặt tự động:
 
 ```bash
-# Clone repository và chạy script cài đặt tự động Quick Setup
-git clone https://github.com/thucho0103/ltlx-bot.git
-cd ltlx-bot
-chmod +x setup.sh
-./setup.sh
+bash <(curl -sSL https://raw.githubusercontent.com/thucho0103/ltlx-bot/main/setup.sh)
+```
+
+Hoặc nếu đã clone repository về máy:
+```bash
+chmod +x setup.sh && ./setup.sh
 ```
 
 > **Hỗ trợ đầy đủ**:
 > - **macOS** (zsh / bash)
 > - **Linux** (Ubuntu / Debian / Arch / Alpine)
-> - **Termux Android** (Tự động tải `nodejs-lts` & `git` qua `pkg`)
+> - **Termux Android** (Tự động cập nhật `pkg`, tự động cài `nodejs-lts` & `git`)
 
 ---
 
