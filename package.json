@@ -1,0 +1,17 @@
+{
+  "name": "ltlx-discord-bot",
+  "version": "1.0.0",
+  "description": "Discord Bot học lý thuyết lái xe ô tô (bộ 600 câu hỏi mới nhất)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "register": "node register-commands.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.15.3",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=16.9.0"
+  }
+}
