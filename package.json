@@ -1,9 +1,12 @@
 {
-  "name": "ltlx-discord-bot",
-  "version": "1.0.0",
-  "description": "Discord Bot học lý thuyết lái xe ô tô (bộ 600 câu hỏi mới nhất)",
+  "name": "ltlx-b2-app",
+  "version": "2.0.0",
+  "description": "Ứng dụng Frontend tĩnh GitHub Pages & Discord Bot học lý thuyết lái xe B2 (Bộ 600 câu hỏi GTVT)",
   "main": "index.js",
   "scripts": {
+    "dev": "npm run dev --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "preview": "npm run preview --prefix frontend",
     "start": "node index.js",
     "register": "node register-commands.js"
   },
@@ -12,6 +15,6 @@
     "dotenv": "^16.4.5"
   },
   "engines": {
-    "node": ">=16.9.0"
+    "node": ">=18.0.0"
   }
 }
