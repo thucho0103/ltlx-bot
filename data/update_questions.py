@@ -1,7 +1,9 @@
 import urllib.request
 import json
 import ssl
+import re
 from concurrent.futures import ThreadPoolExecutor
+
 
 # SSL setup for macOS urllib environment
 ctx = ssl.create_default_context()
@@ -82,27 +84,53 @@ def main():
             else:
                 image_url = f"https://taplai.com{img_path}"
         
+        # Clean question, options, explanation text (fix typos & spacing)
+        question_text = re.sub(r'  +', ' ', data.get('question', '').strip())
+        explanation_text = re.sub(r'  +', ' ', data.get('explanation', '').strip())
+
+        question_text = question_text.replace('sản xuât', 'sản xuất').replace('trục khủy', 'trục khuỷu')
+        explanation_text = explanation_text.replace('sản xuât', 'sản xuất').replace('trục khủy', 'trục khuỷu')
+
+        cleaned_options = []
+        for opt in options:
+            opt_clean = re.sub(r'  +', ' ', opt.strip())
+            opt_clean = opt_clean.replace('sản xuât', 'sản xuất').replace('trục khủy', 'trục khuỷu')
+            cleaned_options.append(opt_clean)
+
         q_obj = {
             "id": num,
             "category": category,
-            "question": data.get('question', '').strip(),
-            "options": options,
+            "question": question_text,
+            "options": cleaned_options,
             "answer": correct_index,
-            "explanation": data.get('explanation', '').strip(),
+            "explanation": explanation_text,
             "image": image_url,
             "is_critical": is_critical
         }
         questions.append(q_obj)
 
+
+    import os
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    output_path = os.path.join(base_dir, 'data', 'questions.json')
+    frontend_path = os.path.join(base_dir, 'frontend', 'public', 'data', 'questions.json')
+
     # Save to data/questions.json
-    output_path = '/Users/thucduy/Public/dev/ltlx_bot/data/questions.json'
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(questions, f, ensure_ascii=False, indent=2)
 
-    print(f"✅ Đã cập nhật thành công {len(questions)} câu hỏi vào {output_path}")
+    # Save to frontend/public/data/questions.json if frontend directory exists
+    if os.path.exists(os.path.dirname(frontend_path)):
+        with open(frontend_path, 'w', encoding='utf-8') as f:
+            json.dump(questions, f, ensure_ascii=False, indent=2)
+
+    print(f"✅ Đã cập nhật thành công {len(questions)} câu hỏi vào:")
+    print(f"   - {output_path}")
+    print(f"   - {frontend_path}")
     print(f"📊 Thống kê:")
     print(f"   - Số câu có hình ảnh: {image_count}/600")
     print(f"   - Số câu điểm liệt: {critical_count}/600")
 
 if __name__ == '__main__':
     main()
+
